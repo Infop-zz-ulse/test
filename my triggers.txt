@@ -1,0 +1,48 @@
+
+
+
+==================================================
+create table unique_id (ID INT NOT NULL, DESCRIPTION CHAR(20));
+create unique index IND_ID on unique_id(ID);
+alter table  unique_id  primary key (id);
+grant all on unique_id to public;
+create public  synonym unique_id for table sysadm.unique_id;
+commit;
+
+insert into unique_id (id, description) values(1, 'LT');
+commit;
+==================================================
+
+create table tmp1(ID integer, name char(128), key1 integer, key2 integer, key3 integer, key4 integer, key5 integer, valn integer, vals char(250), vald timestamp, valls LONG VARCHAR);
+
+insert into tmp1 (ID,  name, key1, key2, key3, key4, key5, valn, vals, vald, valls)  select ID,  name, key1, key2, key3, key4, key5, valn, vals, vald, valls from lt_values;
+
+drop table lt_values;
+
+create table lt_values (auto_id integer not null auto_increment (1,1), ID integer not null, name char(128) not null, key1 integer, key2 integer, key3 integer, key4 integer, key5 integer, valn integer, vals char(250), vald timestamp, valls LONG VARCHAR);
+
+insert into lt_values(ID,  name, key1, key2, key3, key4, key5, valn, vals, vald, valls)  select ID,  name, key1, key2, key3, key4, key5, valn, vals, vald, valls from tmp1;
+
+create unique index pk_lt_vls on lt_values (auto_id);
+
+alter table lt_values primary key (auto_id); 
+
+create public  synonym lt_values for table sysadm.lt_values;
+grant all on lt_values to public;
+
+drop table tmp1;
+
+commit;
+==================================================
+
+insert into lt_types (Type, Descr) values(10, 'Plan Mating');
+commit;
+
+
+
+
+!!CB!! 129
+Call SalMessageBox ( SalNumberToStrX(nLT+1, 0), "Warning", MB_Ok )
+
+
+
