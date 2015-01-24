@@ -10,7 +10,7 @@ create public  synonym unique_id for table sysadm.unique_id;
 commit;
 
 insert into unique_id (id, description) values(1, 'LT');
-commit;
+commit;88-
 ==================================================
 
 create table tmp1(ID integer, name char(128), key1 integer, key2 integer, key3 integer, key4 integer, key5 integer, valn integer, vals char(250), vald timestamp, valls LONG VARCHAR);
